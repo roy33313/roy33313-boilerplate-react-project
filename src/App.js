@@ -1,22 +1,32 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 
+import { Security, LoginCallback, SecureRoute } from "@okta/okta-react";
+import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
+
+import Home from "./components/OktaSignin/Home";
 import Profile from "./components/Profile/Profile";
-import DetailsState from "./context/DetailsContext/DetailsState";
+import { oktaConfig } from "./components/OktaSignin/OktaConfig";
 
-function App() {
+const CALLBACK_PATH = "/login/callback";
+
+const oktaAuth = new OktaAuth(oktaConfig);
+
+const App = () => {
+  const history = useHistory();
+  const restoreOriginalUri = async (_oktaAuth, originalUri) => {
+    history.replace(toRelativeUrl(originalUri || "/", window.location.origin));
+  };
+
   return (
-    <div className="App">
-      <DetailsState>
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<>initial</>} />
-            <Route exact path="/profile" element={<Profile />} />
-          </Routes>
-        </Router>
-      </DetailsState>
-    </div>
+    <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path={CALLBACK_PATH} exact component={LoginCallback} />
+        <SecureRoute path="/profile" component={Profile} />
+      </Switch>
+    </Security>
   );
-}
+};
 
 export default App;
