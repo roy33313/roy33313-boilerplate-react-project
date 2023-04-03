@@ -28,7 +28,19 @@ export default function GoogleSignin() {
   return (
     <div>
       <GoogleOAuthProvider clientId={clientId}>
-        <GoogleLogin onSuccess={onLoginSuccess} onError={onLoginFailure} />
+        <GoogleLogin
+          onSuccess={onLoginSuccess}
+          onError={onLoginFailure}
+          ux_mode="popup"
+        />
+      </GoogleOAuthProvider>
+
+      <GoogleOAuthProvider clientId={clientId}>
+        <GoogleLogin
+          onSuccess={onLoginSuccess}
+          onError={onLoginFailure}
+          ux_mode="redirect"
+        />
       </GoogleOAuthProvider>
     </div>
   );
