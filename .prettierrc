@@ -5,11 +5,5 @@
   "bracketSpacing": true,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
-  "tabWidth": 2,
-  "prettier/prettier": [
-    "error",
-    {
-      "endOfLine": "auto"
-    }
-  ]
+  "tabWidth": 2
 }

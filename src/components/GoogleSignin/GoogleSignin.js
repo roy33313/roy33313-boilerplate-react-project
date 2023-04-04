@@ -26,7 +26,7 @@ export default function GoogleSignin() {
   };
 
   return (
-    <div>
+    <div className="h-100 d-flex align-items-center justify-content-center">
       <GoogleOAuthProvider clientId={clientId}>
         <GoogleLogin onSuccess={onLoginSuccess} onError={onLoginFailure} ux_mode="popup" />
 
