@@ -14,9 +14,7 @@ export default function DetailsState(props) {
 
   return (
     <div>
-      <DetailsContext.Provider value={{ details, setDetails }}>
-        {props.children}
-      </DetailsContext.Provider>
+      <DetailsContext.Provider value={{ details, setDetails }}>{props.children}</DetailsContext.Provider>
     </div>
   );
 }

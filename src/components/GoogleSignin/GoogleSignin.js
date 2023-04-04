@@ -22,24 +22,20 @@ export default function GoogleSignin() {
   };
 
   const onLoginFailure = (err) => {
-    console.log("failed to login");
+    console.log("failed to login", err);
   };
 
   return (
     <div>
       <GoogleOAuthProvider clientId={clientId}>
-        <GoogleLogin
-          onSuccess={onLoginSuccess}
-          onError={onLoginFailure}
-          ux_mode="popup"
-        />
-      </GoogleOAuthProvider>
+        <GoogleLogin onSuccess={onLoginSuccess} onError={onLoginFailure} ux_mode="popup" />
 
-      <GoogleOAuthProvider clientId={clientId}>
         <GoogleLogin
           onSuccess={onLoginSuccess}
           onError={onLoginFailure}
           ux_mode="redirect"
+          redirect_uri="http://localhost:3000/"
+          select_account="true"
         />
       </GoogleOAuthProvider>
     </div>
