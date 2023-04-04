@@ -7,6 +7,7 @@ import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import Home from "./components/OktaSignin/Home";
 import Profile from "./components/Profile/Profile";
 import { oktaConfig } from "./components/OktaSignin/OktaConfig";
+// import Login from "./components/OktaSignin/Login";
 
 const CALLBACK_PATH = "/login/callback";
 
@@ -23,6 +24,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path={CALLBACK_PATH} exact component={LoginCallback} />
+        {/* <Route path="/" render={() => <Login />} /> */}
         <SecureRoute path="/profile" component={Profile} />
       </Switch>
     </Security>
