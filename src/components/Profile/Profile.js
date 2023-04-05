@@ -28,7 +28,7 @@ const Profile = () => {
   return (
     <div>
       <div>
-        <table>
+        <table className="table table-striped table-dark table-bordered">
           <thead>
             <tr>
               <th>Claim</th>
