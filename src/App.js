@@ -4,10 +4,11 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { Security, LoginCallback, SecureRoute } from "@okta/okta-react";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 
-import Home from "./components/OktaSignin/Home";
+// import Home from "./components/OktaSignin/Home";
 import Profile from "./components/Profile/Profile";
 import { oktaConfig } from "./components/OktaSignin/OktaConfig";
-// import Login from "./components/OktaSignin/Login";
+// import Image from "./components/Image/Image";
+import Login from "./components/OktaSignin/Login";
 
 const CALLBACK_PATH = "/login/callback";
 
@@ -22,9 +23,14 @@ const App = () => {
   return (
     <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
       <Switch>
-        <Route path="/" exact component={Home} />
+        {/* <Route path="/" exact>
+          <Image img="https://www.dairyfoods.com/ext/resources/Cargill-logo.jpg?1615840840" />
+          <Home />
+        </Route> */}
         <Route path={CALLBACK_PATH} exact component={LoginCallback} />
-        {/* <Route path="/" render={() => <Login />} /> */}
+        <Route path="/" exact>
+          <Login />
+        </Route>
         <SecureRoute path="/profile" component={Profile} />
       </Switch>
     </Security>
